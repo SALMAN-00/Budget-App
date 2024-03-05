@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 
 export default function IncomForm() {
+  // declare type for Income
 
-  const [income, setIncome] = useState({
+  type Income = {
+    source: string;
+    amount: number;
+    date: string;
+  };
+  const [income, setIncome] = useState<Income>({
     source: "",
     amount: 0,
-    date: new Date().toLocaleDateString(),
+    date: "",
   });
-  const [incomes, setIncomes] = useState([]);
+  const [incomes, setIncomes] = useState<Income[]>([]);
 
-  const handelSubmit = e => {
+  const handelSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newIncome = {
       source: income.source,
@@ -20,7 +26,7 @@ export default function IncomForm() {
     setIncome({
       source: "",
       amount: 0,
-      date: new Date().toLocaleDateString(),
+      date: "",
     });
   };
 
@@ -28,7 +34,7 @@ export default function IncomForm() {
     <>
       <div className="container">
         <div>
-          <form>
+          <form onSubmit={handelSubmit}>
             <div className="conatinerForm">
               <label htmlFor="income-source">income source</label>
               <input
@@ -47,7 +53,10 @@ export default function IncomForm() {
                 id="amount-source"
                 value={income.amount}
                 onChange={e =>
-                  setIncome(prev => ({ ...prev, amount: e.target.value }))
+                  setIncome(prev => ({
+                    ...prev,
+                    amount: parseInt(e.target.value),
+                  }))
                 }
               />
 
@@ -61,10 +70,19 @@ export default function IncomForm() {
                 }
               />
 
-              <button type="submit" onClick={handelSubmit}>
-                Add income
-              </button>
-              {incomes}
+              <button type="submit">Add income</button>
+    
+              {/* incomes is an array, if you want to render to UI , you have to use map()  */}
+              {incomes.map(item => {
+                console.log("item income when running for loop with map", item);
+                return (
+                  <ul>
+                    <li>{item.amount}</li>
+                    <li>{item.source}</li>
+                    <li>{item.date}</li>
+                  </ul>
+                );
+              })}
             </div>
           </form>
         </div>
