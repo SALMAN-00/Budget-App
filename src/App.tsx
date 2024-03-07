@@ -2,7 +2,7 @@ import React from 'react';
 
 import logo from './logo.svg';
 import './App.css';
-import IncomForm from './components/IncomForm';
+import IncomeForm from './components/IncomeForm';
 
 
 function App() {
@@ -10,7 +10,8 @@ function App() {
 // create usestate to store total expense 
   return (
 <>
-<IncomForm/>
+
+<IncomeForm/>
 
 </>
   );
