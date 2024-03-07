@@ -14,7 +14,7 @@ export default function Expense() {
 
   const [expenses, setExpenses] = useState<Expense[]>([]);
 
-  const handelSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit  = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newExpense = {
       source: expense.source,
@@ -31,7 +31,7 @@ export default function Expense() {
   return (
     <>
       <div>
-        <form onSubmit={handelSubmit}>
+        <form onSubmit={handleSubmit }>
           <div>
             <label htmlFor="expense-source">Expense source</label>
             <input
