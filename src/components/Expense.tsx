@@ -14,7 +14,7 @@ export default function Expense() {
 
   const [expenses, setExpenses] = useState<Expense[]>([]);
 
-  const handleSubmit  = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newExpense = {
       source: expense.source,
@@ -30,9 +30,9 @@ export default function Expense() {
   };
   return (
     <>
-      <div>
-        <form onSubmit={handleSubmit }>
-          <div>
+      <div className="h-72 w-72 flex justify-center bg-slate-600">
+        <form onSubmit={handleSubmit}>
+          <div className=" flex flex-col gap-2">
             <label htmlFor="expense-source">Expense source</label>
             <input
               type="text"
@@ -67,21 +67,19 @@ export default function Expense() {
               }
             />
 
-            <button type="submit">Add expense</button>
-            {expenses.map(item=>{
-                console.log('item expense running');
-                return(
-                    <ul>
-
-                        <li>{item.source}</li>
-                        <li>{item.amount}</li>
-                        <li>{item.date}</li>
-                    </ul>
-                )
+            <button  className="bg-green-500 rounded-md mt-2 w-28 py-1" type="submit" >Add expense</button>
+            {expenses.map(item => {
+              console.log("item expense running");
+              return (
+                <ul>
+                  <li>{item.source}</li>
+                  <li>{item.amount}</li>
+                  <li>{item.date}</li>
+                </ul>
+              );
             })}
           </div>
         </form>
-
       </div>
     </>
   );

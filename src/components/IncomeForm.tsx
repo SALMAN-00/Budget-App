@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 export default function IncomForm() {
   // declare type for Income
@@ -29,14 +29,13 @@ export default function IncomForm() {
       date: "",
     });
   };
-  // create a varaible called totalIncome , then calcualte the total amount of income using reduce() 
+  // create a varaible called totalIncome , then calcualte the total amount of income using reduce()
 
   // income[{source, amount, date}]
-  // incomesArray.reduce() 
+  // incomesArray.reduce()
 
   return (
     <>
-      <div className="h-[100vh] w-[100vw] flex justify-center items-center">
         <div className="h-72 w-72 flex justify-center bg-slate-600">
           <form onSubmit={handelSubmit} className="">
             <div className=" flex flex-col gap-2">
@@ -74,8 +73,13 @@ export default function IncomForm() {
                 }
               />
 
-              <button className="bg-blue-500 rounded-md mt-2 w-28 py-1" type="submit">Add income</button>
-    
+              <button
+                className="bg-green-500 rounded-md mt-2 w-28 py-1"
+                type="submit"
+              >
+                Add income
+              </button>
+
               {/* incomes is an array, if you want to render to UI , you have to use map()  */}
               {incomes.map(item => {
                 console.log("item income when running for loop with map", item);
@@ -90,7 +94,6 @@ export default function IncomForm() {
             </div>
           </form>
         </div>
-      </div>
     </>
   );
 }
