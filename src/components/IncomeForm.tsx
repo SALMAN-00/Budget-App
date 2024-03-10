@@ -36,64 +36,86 @@ export default function IncomForm() {
 
   return (
     <>
-        <div className="h-72 w-72 flex justify-center bg-slate-600">
-          <form onSubmit={handelSubmit} className="">
-            <div className=" flex flex-col gap-2">
-              <label htmlFor="income-source">income source</label>
-              <input
-                type="text"
-                id="income-source"
-                placeholder="Salary"
-                value={income.source}
-                onChange={e =>
-                  setIncome(prev => ({ ...prev, source: e.target.value }))
-                }
-              />
+      <div className="h-72 w-72 flex justify-center bg-slate-600">
+        <form onSubmit={handelSubmit} className="">
+          <div className=" flex flex-col gap-2">
+            <label htmlFor="income-source">income source</label>
+            <input
+              type="text"
+              id="income-source"
+              placeholder="Salary"
+              value={income.source}
+              onChange={e =>
+                setIncome(prev => ({ ...prev, source: e.target.value }))
+              }
+            />
 
-              <label htmlFor="amount-source">Amount of income</label>
-              <input
-                type="text"
-                id="amount-source"
-                value={income.amount}
-                onChange={e =>
-                  setIncome(prev => ({
-                    ...prev,
-                    amount: parseInt(e.target.value),
-                  }))
-                }
-              />
+            <label htmlFor="amount-source">Amount of income</label>
+            <input
+              type="text"
+              id="amount-source"
+              value={income.amount}
+              onChange={e =>
+                setIncome(prev => ({
+                  ...prev,
+                  amount: parseInt(e.target.value),
+                }))
+              }
+            />
 
-              <label htmlFor="date-of-income">Date of income</label>
-              <input
-                type="date"
-                id="date-of-income"
-                value={income.date}
-                onChange={e =>
-                  setIncome(prev => ({ ...prev, date: e.target.value }))
-                }
-              />
+            <label htmlFor="date-of-income">Date of income</label>
+            <input
+              type="date"
+              id="date-of-income"
+              value={income.date}
+              onChange={e =>
+                setIncome(prev => ({ ...prev, date: e.target.value }))
+              }
+            />
 
-              <button
-                className="bg-green-500 rounded-md mt-2 w-28 py-1"
-                type="submit"
-              >
-                Add income
-              </button>
+            <button
+              className="bg-green-500 rounded-md mt-2 w-28 py-1"
+              type="submit"
+            >
+              Add income
+            </button>
 
-              {/* incomes is an array, if you want to render to UI , you have to use map()  */}
-              {incomes.map(item => {
-                console.log("item income when running for loop with map", item);
-                return (
-                  <ul>
-                    <li>{item.amount}</li>
-                    <li>{item.source}</li>
-                    <li>{item.date}</li>
-                  </ul>
-                );
-              })}
-            </div>
-          </form>
-        </div>
+            {/* incomes is an array, if you want to render to UI , you have to use map()  */}
+            {incomes.map(item => {
+              console.log("item income when running for loop with map", item);
+              return (
+                <div>
+                  <table className="table-fixed">
+                    <thead>
+                      <tr>
+                        <th>Source</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{item.source}</td>
+                        <td>{item.amount}</td>
+                        <td>{item.date}</td>
+                        <td className="flex justify-evenly">
+                          <button className="bg-red-500 rounded-md px-1 py2 text-center text-white ">
+                            Delete
+                          </button>{" "}
+                          <button className="bg-blue-500 rounded-md px-1 py2 text-center text-white">
+                            Edit
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              );
+            })}
+          </div>
+        </form>
+      </div>
     </>
   );
 }

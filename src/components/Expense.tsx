@@ -67,15 +67,42 @@ export default function Expense() {
               }
             />
 
-            <button  className="bg-green-500 rounded-md mt-2 w-28 py-1" type="submit" >Add expense</button>
+            <button
+              className="bg-green-500 rounded-md mt-2 w-28 py-1"
+              type="submit"
+            >
+              Add expense
+            </button>
             {expenses.map(item => {
               console.log("item expense running");
               return (
-                <ul>
-                  <li>{item.source}</li>
-                  <li>{item.amount}</li>
-                  <li>{item.date}</li>
-                </ul>
+                <div>
+                  <table className="table-fixed">
+                    <thead>
+                      <tr>
+                        <th>Source</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{item.source}</td>
+                        <td>{item.amount}</td>
+                        <td>{item.date}</td>
+                        <td className="flex justify-evenly">
+                          <button className="bg-red-500 rounded-md px-1 py2 text-center text-white ">
+                            Delete
+                          </button>{" "}
+                          <button className="bg-blue-500 rounded-md px-1 py2 text-center text-white">
+                            Edit
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               );
             })}
           </div>
