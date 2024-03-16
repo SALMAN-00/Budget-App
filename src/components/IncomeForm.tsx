@@ -1,23 +1,25 @@
 import React, { useState } from "react";
-
-export default function IncomForm() {
+export default function IncomForm(handleChangeSource , handleChangeAmount , handleChangeDate) {
   // declare type for Income
-
   type Income = {
+    id : number
     source: string;
     amount: number;
     date: string;
   };
   const [income, setIncome] = useState<Income>({
+    id: Date.now(),
     source: "",
     amount: 0,
     date: "",
   });
-  const [incomes, setIncomes] = useState<Income[]>([]);
 
+  const [incomes, setIncomes] = useState<Income[]>([]);
+  
   const handelSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const newIncome = {
+    const newIncome:Income = {
+      id:Date.now(),
       source: income.source,
       amount: income.amount,
       date: income.date,
@@ -29,14 +31,19 @@ export default function IncomForm() {
       date: "",
     });
   };
-  // create a varaible called totalIncome , then calcualte the total amount of income using reduce()
 
+   const handleDeleteIncome = (id: number) => {
+    const updatedIncomes = incomes.filter(income => income.id !== id);
+    setIncomes(updatedIncomes);
+  };
+{/*
+  const handelEditIncome = (id: number) => {};
   // income[{source, amount, date}]
   // incomesArray.reduce()
-
+*/}
   return (
     <>
-      <div className="h-72 w-72 flex justify-center bg-slate-600">
+      <div className="h-72 w-80 flex justify-center bg-slate-600">
         <form onSubmit={handelSubmit} className="">
           <div className=" flex flex-col gap-2">
             <label htmlFor="income-source">income source</label>
@@ -45,9 +52,7 @@ export default function IncomForm() {
               id="income-source"
               placeholder="Salary"
               value={income.source}
-              onChange={e =>
-                setIncome(prev => ({ ...prev, source: e.target.value }))
-              }
+              onChange={handleChangeSource}
             />
 
             <label htmlFor="amount-source">Amount of income</label>
@@ -55,11 +60,7 @@ export default function IncomForm() {
               type="text"
               id="amount-source"
               value={income.amount}
-              onChange={e =>
-                setIncome(prev => ({
-                  ...prev,
-                  amount: parseInt(e.target.value),
-                }))
+              onChange={handleChangeAmount
               }
             />
 
@@ -68,8 +69,7 @@ export default function IncomForm() {
               type="date"
               id="date-of-income"
               value={income.date}
-              onChange={e =>
-                setIncome(prev => ({ ...prev, date: e.target.value }))
+              onChange={handleChangeDate
               }
             />
 
@@ -83,11 +83,15 @@ export default function IncomForm() {
             {/* incomes is an array, if you want to render to UI , you have to use map()  */}
             {incomes.map(item => {
               console.log("item income when running for loop with map", item);
+
               return (
-                <div>
+                <div
+                  className="h-auto w-auto flex gap-10 bg-slate-400"
+                >
                   <table className="table-fixed">
                     <thead>
                       <tr>
+                        <th>ID</th>
                         <th>Source</th>
                         <th>Amount</th>
                         <th>Date</th>
@@ -96,21 +100,28 @@ export default function IncomForm() {
                     </thead>
                     <tbody>
                       <tr>
+                        <td>ID</td>
                         <td>{item.source}</td>
                         <td>{item.amount}</td>
                         <td>{item.date}</td>
                         <td className="flex justify-evenly">
-                          <button className="bg-red-500 rounded-md px-1 py2 text-center text-white ">
+                          <button
+                            className="bg-red-500 rounded-md px-1 py2 text-center text-white"
+                      
+                          >
                             Delete
                           </button>{" "}
-                          <button className="bg-blue-500 rounded-md px-1 py2 text-center text-white">
+                          <button
+                            className="bg-blue-500 rounded-md px-1 py2 text-center text-white"
+                          
+                          >
                             Edit
                           </button>
                         </td>
                       </tr>
                     </tbody>
                   </table>
-                </div>
+                </div>    
               );
             })}
           </div>

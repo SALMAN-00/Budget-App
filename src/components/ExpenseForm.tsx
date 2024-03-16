@@ -1,6 +1,6 @@
 import { log } from "console";
 import React, { useState } from "react";
-export default function Expense() {
+export default function ExpenseForm() {
   type Expense = {
     source: string;
     amount: number;
