@@ -1,4 +1,14 @@
-export default function IncomeForm({
+interface IncomeFormProps {
+  handleChangeSource: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChangeAmount: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChangeDate: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  sourceValue: string;
+  amountValue: string; 
+  dateValue: string;
+}
+
+const IncomeForm: React.FC<IncomeFormProps> = ({
   handleChangeSource,
   handleChangeAmount,
   handleChangeDate,
@@ -6,7 +16,9 @@ export default function IncomeForm({
   sourceValue,
   amountValue,
   dateValue,
-}) {
+}) => {
+
+
   return (
     <div className="max-w-xl mx-auto my-8">
       <h1 className="text-3xl">Income</h1>
@@ -69,3 +81,4 @@ export default function IncomeForm({
     </div>
   );
 }
+export default  IncomeForm

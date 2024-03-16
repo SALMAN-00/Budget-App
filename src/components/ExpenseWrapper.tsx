@@ -11,7 +11,6 @@ type Expense = {
 
 export default function ExpenseWrapper() {
   const [expenses, setExpenses] = useState<Expense[]>([]);
-  console.log(expenses);
   const [source, setSource] = useState("");
   const [amount, setAmount] = useState(0);
   const [date, setDate] = useState("");
@@ -22,19 +21,19 @@ export default function ExpenseWrapper() {
   const [editAmount, setEditAmount] = useState(0);
   const [editDate, setEditDate] = useState("");
 
-  const handleChangeSource = e => {
+  const handleChangeSource = (e: React.ChangeEvent<HTMLInputElement>)  => {
     setSource(e.target.value);
   };
 
-  const handleChangeAmount = e => {
+  const handleChangeAmount = (e: React.ChangeEvent<HTMLInputElement>)  => {
     setAmount(parseInt(e.target.value));
   };
 
-  const handleChangeDate = e => {
+  const handleChangeDate = (e: React.ChangeEvent<HTMLInputElement>)  => {
     setDate(e.target.value);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit =  (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newExpense = {
       id: expenses.length + 1,

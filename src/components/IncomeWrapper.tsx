@@ -10,7 +10,6 @@ type Income = {
 };
 export default function IncomeWrapper() {
   const [incomes, setIncomes] = useState<Income[]>([]);
-  console.log(incomes);
   const [source, setSource] = useState("");
   const [amount, setAmount] = useState(0);
   const [date, setDate] = useState("");
@@ -21,19 +20,19 @@ export default function IncomeWrapper() {
   const [editAmount, setEditAmount] = useState(0);
   const [editDate, setEditDate] = useState("");
 
-  const handleChangeSource = e => {
+  const handleChangeSource = (e: React.ChangeEvent<HTMLInputElement>)  => {
     setSource(e.target.value);
   };
 
-  const handleChangeAmount = e => {
+  const handleChangeAmount = (e: React.ChangeEvent<HTMLInputElement>)  => {
     setAmount(parseInt(e.target.value));
   };
 
-  const handleChangeDate = e => {
+  const handleChangeDate = (e: React.ChangeEvent<HTMLInputElement>)  => {
     setDate(e.target.value);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newIncome = {
       id: incomes.length + 1,

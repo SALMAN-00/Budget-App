@@ -1,4 +1,15 @@
-export default function ExpenseForm({
+interface ExpenseFormProps {
+  handleChangeSource: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChangeAmount: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChangeDate: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  sourceValue: string;
+  amountValue: string; 
+  dateValue: string;
+}
+
+
+const ExpenseForm: React.FC<ExpenseFormProps> = ({
   handleChangeSource,
   handleChangeAmount,
   handleChangeDate,
@@ -6,7 +17,7 @@ export default function ExpenseForm({
   sourceValue,
   amountValue,
   dateValue,
-}) {
+}) => {
   return (
     <div className="max-w-xl mx-auto my-8">
       <h1 className="text-3xl">Expense</h1>
@@ -69,3 +80,4 @@ export default function ExpenseForm({
     </div>
   );
 }
+export default ExpenseForm; 
