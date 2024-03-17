@@ -2,15 +2,17 @@ import React, { useState } from "react";
 
 import ExpenseForm from "./ExpenseForm";
 
-type Expense = {
+export type Expense = {
   id: number;
   source: string;
   amount: number;
   date: string;
 };
-
-export default function ExpenseWrapper() {
-  const [expenses, setExpenses] = useState<Expense[]>([]);
+type ExpenseWrapperProps = {
+  expenses: Expense[];
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>;
+};
+export default function ExpenseWrapper({expenses,setExpenses}:ExpenseWrapperProps) {
   const [source, setSource] = useState("");
   const [amount, setAmount] = useState(0);
   const [date, setDate] = useState("");

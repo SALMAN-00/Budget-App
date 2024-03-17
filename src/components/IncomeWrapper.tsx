@@ -2,14 +2,20 @@ import React, { useState } from "react";
 
 import IncomeForm from "./IncomeForm";
 
-type Income = {
+export type Income = {
   id: number;
   source: string;
   amount: number;
   date: string;
 };
-export default function IncomeWrapper() {
-  const [incomes, setIncomes] = useState<Income[]>([]);
+type IncomeWrapperProps = {
+  incomes: Income[];
+  setIncomes: React.Dispatch<React.SetStateAction<Income[]>>;
+};
+export default function IncomeWrapper({
+  incomes,
+  setIncomes,
+}: IncomeWrapperProps) {
   const [source, setSource] = useState("");
   const [amount, setAmount] = useState(0);
   const [date, setDate] = useState("");
@@ -20,19 +26,19 @@ export default function IncomeWrapper() {
   const [editAmount, setEditAmount] = useState(0);
   const [editDate, setEditDate] = useState("");
 
-  const handleChangeSource = (e: React.ChangeEvent<HTMLInputElement>)  => {
+  const handleChangeSource = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSource(e.target.value);
   };
 
-  const handleChangeAmount = (e: React.ChangeEvent<HTMLInputElement>)  => {
+  const handleChangeAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(parseInt(e.target.value));
   };
 
-  const handleChangeDate = (e: React.ChangeEvent<HTMLInputElement>)  => {
+  const handleChangeDate = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
   };
 
-  const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newIncome = {
       id: incomes.length + 1,
