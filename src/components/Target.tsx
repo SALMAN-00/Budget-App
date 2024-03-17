@@ -7,7 +7,7 @@ export default function Target() {
     // 1 target
     // 2 progress = current / target
     <>
-      <div className="h-72 w-72 flex flex-col justify-center bg-slate-600">
+      <div className="">
         <label htmlFor="set-target">Set target</label>
         <input
           type="text"

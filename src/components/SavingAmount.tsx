@@ -3,7 +3,7 @@ import React from "react";
 export default function SavingAmount() {
   return (
     <>
-      <div className="h-72 w-72 flex flex-col justify-center bg-slate-600">
+      <div className="">
         <h1>Current Balance: </h1>
         <label htmlFor="transfer-to-saving-account">
           Transfer to saving account

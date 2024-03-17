@@ -1,15 +1,9 @@
 import React from "react";
 
-import IncomeWrapper from "./components/IncomeWrapper";
-import ExpenseWrapper from "./components/ExpenseWrapper";
-
+import Rout from "./components/Rout";
 export default function App() {
-  return (
-    <>
-      <div className="flex">
-        <IncomeWrapper />
-        <ExpenseWrapper />
-      </div>
-    </>
-  );
+
+  return <>
+  <Rout/>
+  </>;
 }
