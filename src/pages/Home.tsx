@@ -11,7 +11,7 @@ export default function Home() {
   const [currentSaving, setCurrentSaving] = useState(0);
   const [incomes, setIncomes] = useState<Income[]>([]);
   const [expenses, setExpenses] = useState<Expense[]>([]);
-
+  const [transferError, setTransferError] = useState("");
   const totalIncome = incomes.reduce((acc, curr) => {
     return acc + curr.amount;
   }, 0);
@@ -23,15 +23,20 @@ export default function Home() {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    setCurrentSaving(prevState => {
-      return prevState + transferAmount;
-    });
+    if (transferAmount <= balance) {
+      setCurrentSaving(prevState => {
+        return prevState + transferAmount;
+      });
+      setTransferError("");
+    } else {
+      setTransferError("not enough monye in balane!");
+    }
 
     setTransferAmount(0);
     console.log("transferAmount: " + transferAmount);
     console.log("currentSaving: " + currentSaving);
   };
-
+  const progress = (currentSaving / savingTarget) * 100 || 0;
   return (
     <>
       <div>
@@ -43,6 +48,8 @@ export default function Home() {
           <SavingWrapper
             setSavingTarget={setSavingTarget}
             currentSaving={currentSaving}
+            savingTarget={savingTarget}
+            progress={progress}
           />
           <h1>Balance: {balance}</h1>
           <TransferAccountWrapper
@@ -50,6 +57,7 @@ export default function Home() {
             handleSubmit={handleSubmit}
             transferAmount={transferAmount}
           />
+          {transferError && <h1 className="text-red-500 ">{transferError}</h1>}
         </div>
       </div>
     </>
