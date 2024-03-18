@@ -40,6 +40,7 @@ export default function IncomeWrapper({
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
     const newIncome = {
       id: incomes.length + 1,
       source: source,
